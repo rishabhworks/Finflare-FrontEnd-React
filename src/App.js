@@ -11,6 +11,8 @@ import TaxGambit from './pages/TaxGambit';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
+import { Analytics } from "@vercel/analytics/react";
+
 
 function App() {
   return (
