@@ -17,17 +17,17 @@ const Events = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: '50px', maxWidth: '900px', margin: '0 auto' }}>
-      <Typography variant="h2" gutterBottom sx={{ color: '#2e7d32', fontWeight: 'bold' }}>
+    <Box sx={{ padding: { xs: '20px', sm: '50px' }, maxWidth: { xs: '100%', sm: '900px' }, margin: '0 auto' }}>
+      <Typography variant="h2" gutterBottom sx={{ color: '#2e7d32', fontWeight: 'bold', fontSize: { xs: '1.5rem', sm: '2.5rem' } }}>
         💸 Our Events
       </Typography>
-      <Typography paragraph sx={{ fontSize: '18px' }}>
+      <Typography paragraph sx={{ fontSize: { xs: '14px', sm: '18px' } }}>
         Where finance meets fun—cash in on these!
       </Typography>
       <ul>
         {events.map((event) => (
-          <li key={event.id}> {/* Key is here, should be fine */}
-            <Typography variant="h4" sx={{ color: '#2e7d32' }}>
+          <li key={event.id}>
+            <Typography variant="h4" sx={{ color: '#2e7d32', fontSize: { xs: '1.2rem', sm: '1.75rem' } }}>
               <Link
                 to={`/events/${event.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`}
                 style={{ color: '#2e7d32', textDecoration: 'none' }}
@@ -35,7 +35,7 @@ const Events = () => {
                 {event.name}
               </Link>
             </Typography>
-            <Typography sx={{ fontSize: '16px' }}>{event.description}</Typography>
+            <Typography sx={{ fontSize: { xs: '12px', sm: '16px' } }}>{event.description}</Typography>
           </li>
         ))}
       </ul>

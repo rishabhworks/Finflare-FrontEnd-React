@@ -4,22 +4,22 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f4f0; /* Light green-gray for a money feel */
-  color: #1a3c34; /* Dark teal for contrast */
+  background-color: #f0f4f0;
+  color: #1a3c34;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, #d4e4d4 0%, #fff3cc 100%); /* Green to gold gradient */
+  background: linear-gradient(135deg, #d4e4d4 0%, #fff3cc 100%);
 }
 
 /* Headings */
 h1, h2, h3 {
-  color: #2e7d32; /* Rich green */
+  color: #2e7d32;
   font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Links */
@@ -29,24 +29,24 @@ a {
 }
 
 a:hover {
-  color: #ffca28; /* Gold on hover */
+  color: #ffca28;
 }
 
 /* Buttons */
 button {
-  background: linear-gradient(45deg, #2e7d32, #4caf50); /* Green gradient */
+  background: linear-gradient(45deg, #2e7d32, #4caf50);
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 50px; /* Coin-like shape */
+  border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Coin shadow */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-  transform: scale(1.1); /* Bigger pop */
+  transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -54,6 +54,7 @@ button:hover {
 ul {
   list-style: none;
   padding: 0;
+  width: 100%; /* Ensure lists fit the screen */
 }
 
 li {
@@ -61,21 +62,73 @@ li {
   margin: 15px 0;
   padding: 20px;
   border-radius: 12px;
-  border: 2px solid #ffca28; /* Gold border */
+  border: 2px solid #ffca28;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease;
 }
 
 li:hover {
-  transform: translateY(-5px); /* Lift on hover */
+  transform: translateY(-5px);
 }
 
 /* Footer */
 footer {
-  background: linear-gradient(45deg, #2e7d32, #1b5e20); /* Green gradient */
-  color: #ffca28; /* Gold text */
+  background: linear-gradient(45deg, #2e7d32, #1b5e20);
+  color: #ffca28;
   padding: 25px;
   text-align: center;
   font-size: 16px;
-  border-top: 4px solid #ffca28; /* Gold accent */
+  border-top: 4px solid #ffca28;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) { /* Tablets and below */
+  h1, h2, h3 {
+    font-size: 1.8rem; /* Smaller headings */
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  li {
+    padding: 15px;
+    margin: 10px 0;
+  }
+
+  footer {
+    padding: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) { /* Phones */
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 12px;
+    width: 100%; /* Full-width buttons */
+    box-sizing: border-box;
+  }
+
+  li {
+    padding: 10px;
+    margin: 8px 0;
+  }
+
+  footer {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  /* Ensure content doesn’t overflow */
+  .App, main, ul {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
