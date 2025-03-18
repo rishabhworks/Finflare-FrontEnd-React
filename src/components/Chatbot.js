@@ -1,50 +1,66 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../styles/chatbot.css'; // CSS from styles folder
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [isOpen, setIsOpen] = useState(false); // Toggle visibility
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    const userMessage = input;
-    setMessages([...messages, { text: userMessage, sender: 'user' }]);
+    if (!input.trim()) return; // Ignore empty inputs
+
+    const userMessage = { text: input, sender: 'user' };
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
 
     try {
-      const response = await axios.post('http://localhost:5000/chatbot', { message: userMessage });
-      const botMessage = response.data.reply;
-      setMessages([...messages, { text: userMessage, sender: 'user' }, { text: botMessage, sender: 'bot' }]);
+      const response = await axios.post('https://finflare-backend-nodejs.onrender.com', { message: input });
+      const botMessage = { text: response.data.reply, sender: 'bot' };
+      setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error sending message:", error);
+      const errorMessage = { text: 'Oops, something went wrong—try again!', sender: 'bot' };
+      setMessages((prev) => [...prev, errorMessage]);
     }
   };
 
   return (
-    <div className="chatbot-container" style={{ position: 'fixed', bottom: '10px', right: '10px', width: '300px', height: '400px', border: '1px solid #ccc', backgroundColor: '#fff', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', padding: '10px', borderRadius: '8px' }}>
-      <div className="chatbot-header" style={{ fontWeight: 'bold', textAlign: 'center' }}>Chatbot</div>
-      <div className="chatbot-messages" style={{ height: '300px', overflowY: 'scroll', marginBottom: '10px' }}>
-        {messages.map((message, index) => (
-          <div key={index} style={{ textAlign: message.sender === 'user' ? 'right' : 'left' }}>
-            <div style={{ backgroundColor: message.sender === 'user' ? '#DCF8C6' : '#FFF', padding: '10px', borderRadius: '10px', maxWidth: '80%' }}>
-              {message.text}
-            </div>
+    <div className="chatbot-wrapper">
+      {/* Fancy Toggle Button */}
+      <button
+        className="fancy-toggle-btn"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? '✨ Hide Chat' : '💰 Open Chat!'}
+      </button>
+
+      {/* Ultra Fancy Chatbot Container */}
+      {isOpen && (
+        <div className="chatbot-container">
+          <div className="chatbot-header">💸 FinFlare Chatbot</div>
+          <div className="chat-window">
+            {messages.map((message, index) => (
+              <div key={index} className={`message ${message.sender}`}>
+                <span>{message.text}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <form onSubmit={sendMessage} style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message"
-          style={{ width: '80%', padding: '5px' }}
-        />
-        <button type="submit" style={{ width: '18%', backgroundColor: '#007bff', color: 'white', border: 'none', padding: '5px' }}>Send</button>
-      </form>
+          <form onSubmit={sendMessage} className="chatbot-form">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask me anything!"
+              className="fancy-input"
+            />
+            <button type="submit" className="fancy-send-btn">Send</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Chatbot;
-

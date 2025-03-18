@@ -10,8 +10,8 @@ import TaxAndToasted from './pages/TaxAndToasted';
 import TaxGambit from './pages/TaxGambit';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot'; // Import Chatbot
 import './App.css';
-
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Chatbot /> {/* Add Chatbot here */}
       </div>
     </Router>
   );
