@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../styles/chatbot.css'; // CSS from styles folder
+import '../styles/chatbot.css';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [isOpen, setIsOpen] = useState(false); // Toggle visibility
+  const [isOpen, setIsOpen] = useState(false);
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return; // Ignore empty inputs
+    if (!input.trim()) return;
 
     const userMessage = { text: input, sender: 'user' };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
 
     try {
-      const response = await axios.post('https://finflare-backend-nodejs.onrender.com', { message: input });
+      const response = await axios.post('https://finflare-backend.onrender.com/chatbot', { message: input });
       const botMessage = { text: response.data.reply, sender: 'bot' };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
@@ -28,19 +28,13 @@ const Chatbot = () => {
 
   return (
     <div className="chatbot-wrapper">
-      {/* Fancy Toggle Button */}
-      <button
-        className="fancy-toggle-btn"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button className="fancy-toggle-btn" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? '✨ Hide Chat' : '💰 Open Chat!'}
       </button>
-
-      {/* Ultra Fancy Chatbot Container */}
       {isOpen && (
         <div className="chatbot-container">
           <div className="chatbot-header">💸 FinFlare Chatbot</div>
-          <div className="chat-window">
+          <div className="chatbot-window">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.sender}`}>
                 <span>{message.text}</span>
