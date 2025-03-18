@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../styles/chatbot.css';
 
@@ -6,6 +6,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const chatWindowRef = useRef(null); // Ref for auto-scroll
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -16,7 +17,8 @@ const Chatbot = () => {
     setInput('');
 
     try {
-      const response = await axios.post('https://finflare-backend.onrender.com/chatbot', { message: input });
+      const response = await axios.post('https://finflare-backend-nodejs.onrender.com/chatbot', { message: input });
+
       const botMessage = { text: response.data.reply, sender: 'bot' };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
@@ -26,6 +28,13 @@ const Chatbot = () => {
     }
   };
 
+  // Auto-scroll to bottom when new message is added
+  useEffect(() => {
+    if (chatWindowRef.current) {
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <div className="chatbot-wrapper">
       <button className="fancy-toggle-btn" onClick={() => setIsOpen(!isOpen)}>
@@ -34,7 +43,7 @@ const Chatbot = () => {
       {isOpen && (
         <div className="chatbot-container">
           <div className="chatbot-header">💸 FinFlare Chatbot</div>
-          <div className="chatbot-window">
+          <div className="chatbot-window" ref={chatWindowRef}>
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.sender}`}>
                 <span>{message.text}</span>
