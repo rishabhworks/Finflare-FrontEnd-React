@@ -10,9 +10,9 @@ import TaxAndToasted from './pages/TaxAndToasted';
 import TaxGambit from './pages/TaxGambit';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Chatbot from './components/Chatbot'; // Import Chatbot
+import Chatbot from './components/Chatbot';
+import FireCalculator from './components/FireCalculator'; // Yeh rakho
 import './App.css';
-
 
 function App() {
   return (
@@ -29,15 +29,14 @@ function App() {
             <Route path="/resources/credit-card-hacks" element={<CreditCardHacks />} />
             <Route path="/events/tax-and-toasted" element={<TaxAndToasted />} />
             <Route path="/events/tax-gambit" element={<TaxGambit />} />
+            <Route path="/fire-calculator" element={<FireCalculator />} />
           </Routes>
         </main>
         <Footer />
-        <Chatbot /> {/* Add Chatbot here */}
+        <Chatbot />
       </div>
     </Router>
   );
 }
 
 export default App;
-
-
