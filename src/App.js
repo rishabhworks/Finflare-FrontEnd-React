@@ -12,12 +12,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 import FireCalculator from './components/FireCalculator'; // Yeh rakho
+import subtlePattern from './images/Subtle.jpg';  // Your image path
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App" style={{ backgroundImage: `url(${subtlePattern})`, backgroundRepeat: 'repeat' }}>
         <Header />
         <main style={{ padding: '20px', flex: '1' }}>
           <Routes>
@@ -40,3 +41,4 @@ function App() {
 }
 
 export default App;
+
