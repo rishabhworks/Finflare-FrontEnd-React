@@ -1,104 +1,187 @@
 /* src/App.css */
-
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Switching to a premium font later if desired */
   margin: 0;
   padding: 0;
-  background-color: #f0f4f0;
+  background: linear-gradient(to bottom, #e0e8e0 0%, #f8f1e9 100%); /* Subtle, classy gradient */
   color: #1a3c34;
+  overflow-x: hidden;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, #d4e4d4 0%, #fff3cc 100%);
+  background: linear-gradient(145deg, rgba(224, 232, 224, 0.95) 0%, rgba(248, 241, 233, 0.95) 100%);
+  background-attachment: fixed; /* Fixed bg for depth */
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.05); /* Inner glow for richness */
 }
 
 /* Headings */
 h1, h2, h3 {
-  color: #2e7d32;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #1b5e20; /* Deeper, richer green */
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 4px rgba(27, 94, 32, 0.3), 0 0 8px rgba(255, 215, 64, 0.1); /* Refined shadow */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+h1:hover, h2:hover, h3:hover {
+  color: #ffd740; /* Brighter, metallic gold */
+  text-shadow: 2px 2px 8px rgba(255, 215, 64, 0.4), 0 0 12px rgba(255, 215, 64, 0.6);
+  transform: translateY(-1px); /* Subtle lift */
 }
 
 /* Links */
 a {
-  color: #2e7d32;
+  color: #1b5e20;
   text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background: linear-gradient(to right, #ffd740, #ffca28); /* Metallic gradient underline */
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover::after {
+  width: 100%;
 }
 
 a:hover {
-  color: #ffca28;
+  color: #ffd740;
 }
 
 /* Buttons */
 button {
-  background: linear-gradient(45deg, #2e7d32, #4caf50);
-  color: white;
+  background: linear-gradient(135deg, #1b5e20 0%, #388e3c 50%, #ffd740 100%); /* Premium green-to-gold */
+  color: #fff;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 30px;
   border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(27, 94, 32, 0.3), inset 0 2px 5px rgba(255, 255, 255, 0.2); /* Deep shadow + shine */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 215, 64, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+button:hover::before {
+  width: 400px;
+  height: 400px; /* Elegant ripple */
 }
 
 button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(27, 94, 32, 0.5), inset 0 3px 8px rgba(255, 255, 255, 0.3);
 }
 
 /* Lists */
 ul {
   list-style: none;
   padding: 0;
-  width: 100%; /* Ensure lists fit the screen */
+  width: 100%;
 }
 
 li {
-  background: #ffffff;
-  margin: 15px 0;
-  padding: 20px;
-  border-radius: 12px;
-  border: 2px solid #ffca28;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease;
+  background: linear-gradient(120deg, #ffffff 0%, #fafafa 100%); /* Crisp, clean gradient */
+  margin: 20px 0;
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 215, 64, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08), inset 0 1px 3px rgba(255, 215, 64, 0.1); /* Premium depth */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
 }
 
 li:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12), inset 0 2px 6px rgba(255, 215, 64, 0.2);
+  border-color: #ffd740;
+  background: #fefefe;
 }
 
 /* Footer */
 footer {
-  background: linear-gradient(45deg, #2e7d32, #1b5e20);
-  color: #ffca28;
-  padding: 25px;
+  background: linear-gradient(90deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+  color: #ffd740;
+  padding: 30px;
   text-align: center;
   font-size: 16px;
-  border-top: 4px solid #ffca28;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-top: 5px solid #ffd740;
+  box-shadow: 0 -8px 20px rgba(27, 94, 32, 0.4);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(255, 215, 64, 0.2), transparent);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+footer:hover::before {
+  opacity: 1; /* Subtle gold fade-in */
+}
+
+footer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 -12px 30px rgba(27, 94, 32, 0.5);
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) { /* Tablets and below */
+@media (max-width: 768px) { /* Tablets */
   h1, h2, h3 {
-    font-size: 1.8rem; /* Smaller headings */
+    font-size: 1.8rem;
   }
 
   button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 14px;
   }
 
   li {
-    padding: 15px;
-    margin: 10px 0;
+    padding: 20px;
+    margin: 15px 0;
   }
 
   footer {
-    padding: 15px;
+    padding: 20px;
     font-size: 14px;
   }
 }
@@ -109,26 +192,48 @@ footer {
   }
 
   button {
-    padding: 8px 16px;
+    padding: 10px 20px;
     font-size: 12px;
-    width: 100%; /* Full-width buttons */
+    width: 100%;
     box-sizing: border-box;
   }
 
   li {
-    padding: 10px;
-    margin: 8px 0;
+    padding: 15px;
+    margin: 10px 0;
   }
 
   footer {
-    padding: 10px;
+    padding: 15px;
     font-size: 12px;
   }
 
-  /* Ensure content doesn’t overflow */
   .App, main, ul {
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
   }
 }
+
+/* Animations */
+@keyframes pageLoad {
+  0% { opacity: 0; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+main {
+  animation: pageLoad 0.8s ease-out; /* Smooth, premium load-in */
+}
+
+/* Premium Overlay */
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 215, 64, 0.05) 0%, transparent 70%);
+  pointer-events: none; /* Allows clicks through */
+}
+
