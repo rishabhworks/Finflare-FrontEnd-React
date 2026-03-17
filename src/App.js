@@ -11,8 +11,9 @@ import TaxGambit from './pages/TaxGambit';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
-import FireCalculator from './components/FireCalculator'; // Yeh rakho
-import subtlePattern from './images/Subtle.jpg';  // Your image path
+import FireCalculator from './components/FireCalculator'; 
+import subtlePattern from './images/Subtle.jpg';  
+import { Analytics } from "@vercel/analytics/react"
 import './App.css';
 
 function App() {
